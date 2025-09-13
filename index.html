@@ -144,33 +144,46 @@
   </section>
 
   
-  <section id="contact" class="section" style="background:#f8fafc">
-    <div class="wrap">
-      <h2 class="h2" data-zh="联系我们" data-en="Contact Us">联系我们</h2>
-      <div class="kv">
-        <div class="box" style="text-align:left">
-          <div>✉️ info@jinsuifood.com</div>
-          <div>✉️ sales@jinsuifood.com</div>
-          <div>☎️ +86‑536‑3526588</div>
-          <div>📍 山东省潍坊市青州市北环一路1169号</div>
-          <div class="note" data-zh="提示：上线正式版前，请将下方表单接入 Formspree（替换 YOUR_FORM_ID）。" data-en="Note: Replace YOUR_FORM_ID below before production.">提示：上线正式版前，请将下方表单接入 Formspree（替换 YOUR_FORM_ID）。</div>
-        </div>
-        <div class="box" style="flex:1 1 360px">
-          <form id="contact-form">
-            <div style="display:grid;gap:10px">
-              <input name="name" required placeholder="姓名 / Name" class="input">
-              <input name="email" type="email" required placeholder="邮箱 / Email" class="input">
-              <input name="phone" placeholder="电话 / Phone" class="input">
-              <textarea name="message" rows="4" placeholder="留言内容 / Message" class="input"></textarea>
-              <button class="btn primary" type="submit" data-zh="提交" data-en="Send">提交</button>
-            </div>
-            <input type="hidden" name="_subject" value="Website Inquiry">
+ <section id="contact" class="section">
+  <div class="wrap">
+    <h2 class="h2" data-zh="联系我们" data-en="Contact Us">联系我们</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      
+      <!-- 左边：表单 -->
+      <div class="card">
+        <div class="p">
+          <form action="https://formsubmit.co/info@jinsuifood.com" method="POST">
+            <!-- 防垃圾 -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="官网新客户留言 - 金穗食品">
+            
+            <label data-zh="姓名" data-en="Name">姓名</label>
+            <input type="text" name="name" required>
+            
+            <label data-zh="邮箱" data-en="Email">邮箱</label>
+            <input type="email" name="email" required>
+            
+            <label data-zh="留言内容" data-en="Message">留言内容</label>
+            <textarea name="message" rows="5" required></textarea>
+            
+            <button type="submit" class="btn primary" data-zh="提交" data-en="Submit">提交</button>
           </form>
-          <div style="margin-top:12px"><a class="btn" data-open-modal data-zh="或：立即联系（企业微信）" data-en="Or: Contact Now (WeChat)">或：立即联系（企业微信）</a></div>
         </div>
       </div>
+      
+      <!-- 右边：二维码 -->
+      <div class="card" style="text-align:center">
+        <div class="p">
+          <p data-zh="扫描二维码，立即通过企业微信联系我们：" data-en="Scan the QR code to connect via WeChat Work:">扫描二维码，立即通过企业微信联系我们：</p>
+          <img src="wechat-qr.jpg" alt="WeChat QR" style="max-width:200px;margin:10px auto;display:block">
+          <p><strong>Email:</strong> info@jinsuifood.com</p>
+        </div>
+      </div>
+      
     </div>
-  </section>
+  </div>
+</section>
+
 
   <footer class="footer">
     <div class="wrap row">

@@ -152,22 +152,32 @@
       <!-- 左边：表单 -->
       <div class="card">
         <div class="p">
-          <form action="https://formsubmit.co/info@jinsuifood.com" method="POST">
-            <!-- 防垃圾 -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="官网新客户留言 - 金穗食品">
-            
-            <label data-zh="姓名" data-en="Name">姓名</label>
-            <input type="text" name="name" required>
-            
-            <label data-zh="邮箱" data-en="Email">邮箱</label>
-            <input type="email" name="email" required>
-            
-            <label data-zh="留言内容" data-en="Message">留言内容</label>
-            <textarea name="message" rows="5" required></textarea>
-            
-            <button type="submit" class="btn primary" data-zh="提交" data-en="Submit">提交</button>
-          </form>
+          <form action="https://formsubmit.co/info@jinsuifood.com" method="POST" style="display:flex;flex-direction:column;gap:15px">
+  <!-- 防垃圾 -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="官网新客户留言 - 金穗食品">
+
+  <div>
+    <label data-zh="姓名" data-en="Name" style="display:block;margin-bottom:5px;font-weight:600">姓名</label>
+    <input type="text" name="name" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
+  </div>
+
+  <div>
+    <label data-zh="邮箱" data-en="Email" style="display:block;margin-bottom:5px;font-weight:600">邮箱</label>
+    <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
+  </div>
+
+  <div>
+    <label data-zh="留言内容" data-en="Message" style="display:block;margin-bottom:5px;font-weight:600">留言内容</label>
+    <textarea name="message" rows="5" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px"></textarea>
+  </div>
+
+  <button type="submit" class="btn primary" data-zh="提交" data-en="Submit" 
+          style="align-self:flex-start;padding:10px 30px;border:none;border-radius:8px;cursor:pointer">
+    提交
+  </button>
+</form>
+
         </div>
       </div>
       

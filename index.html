@@ -255,5 +255,26 @@
 
   <script src="site.js"></script>
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>
+  (function(){
+    const a = Math.floor(1 + Math.random()*8);
+    const b = Math.floor(1 + Math.random()*8);
+    const sum = a + b;
+    const eq = document.getElementById('captchaEq');
+    if(eq) eq.textContent = a + ' + ' + b + ' = ?';
+
+    const form = document.getElementById('contactForm');
+    if(form){
+      form.addEventListener('submit', function(e){
+        const v = document.getElementById('captchaInput')?.value?.trim();
+        if(String(sum) !== v){
+          e.preventDefault();
+          alert((document.documentElement.lang||'zh-CN').startsWith('zh')
+            ? '验证码不正确，请重试。' : 'Wrong verification code. Please try again.');
+        }
+      }, false);
+    }
+  })();
+</script>
 </body>
 </html>

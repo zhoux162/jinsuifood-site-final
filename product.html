@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>产品详情 | 山东金穗食品</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="site.css">
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="山东金穗食品 · 产品详情 · 味付油揚/福袋/信田卷/豆腐饼等 · 中英双语">
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="top">
+    <div class="wrap nav">
+      <a href="index.html" class="brand" data-zh="山东金穗食品" data-en="Shandong Jinsui Foods">山东金穗食品</a>
+      <nav class="menu">
+        <a href="index.html#about" data-zh="关于" data-en="About">关于</a>
+        <a href="index.html#products" data-zh="产品" data-en="Products">产品</a>
+        <a href="index.html#factory" data-zh="生产车间与资质" data-en="Factory & Certificates">生产车间与资质</a>
+        <a href="index.html#contact" data-zh="联系我们" data-en="Contact">联系我们</a>
+      </nav>
+      <div class="lang">
+        <button id="btn-zh" class="on">中文</button>
+        <button id="btn-en">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap">
+      <a href="index.html#products" class="btn" style="margin-bottom:12px" data-zh="← 返回产品列表" data-en="← Back to products">← 返回产品列表</a>
+
+      <h1 id="p-title" class="h1" data-zh="" data-en="" style="margin-top:16px"></h1>
+      <p id="p-desc" class="lead" data-zh="" data-en=""></p>
+
+      <div class="card" style="max-width:960px;margin-top:16px">
+        <img id="p-img" src="" alt="" style="width:100%;display:block">
+      </div>
+
+      <!-- 可扩展信息区：如规格、包装、贮存、食用建议等 -->
+      <div id="p-extra" class="note" style="margin-top:16px"
+           data-zh="更多规格（重量/尺寸/装箱数）与配方可按目标市场定制，支持多语种标签与样品寄送。"
+           data-en="More specs & recipes customizable per market; multilingual labels & samples supported.">
+           更多规格可定制，支持样品寄送。
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap row">
+      <div>© <span id="y"></span> 山东金穗食品有限公司 · Shandong Jinsui Foods Co., Ltd.</div>
+      <div><a href="index.html#contact" data-zh="联系我们" data-en="Contact">联系我们</a></div>
+    </div>
+  </footer>
+
+  <!-- Data + Scripts -->
+  <script src="products.data.js"></script>
+  <script src="site.js"></script>
+
+  <!-- Render from slug -->
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const slug = params.get('slug');
+      const db = (window.PRODUCTS||{});
+      const data = db[slug];
+
+      const elTitle = document.getElementById('p-title');
+      const elDesc  = document.getElementById('p-desc');
+      const elImg   = document.getElementById('p-img');
+
+      if(!data){
+        elTitle.setAttribute('data-zh','未找到该产品');
+        elTitle.setAttribute('data-en','Product not found');
+        elTitle.textContent = '未找到该产品';
+        document.title = '产品未找到 | 山东金穗食品';
+        return;
+      }
+
+      // 填充内容（默认中文）
+      elTitle.setAttribute('data-zh', data.name_zh || '');
+      elTitle.setAttribute('data-en', data.name_en || '');
+      elTitle.textContent = data.name_zh || '';
+
+      elDesc.setAttribute('data-zh', data.desc_zh || '');
+      elDesc.setAttribute('data-en', data.desc_en || '');
+      elDesc.textContent = data.desc_zh || '';
+
+      elImg.src = data.img || '';
+      elImg.alt = data.name_en || data.name_zh || '';
+
+      // 更新页面标题
+      document.title = (data.name_zh || '产品详情') + ' | 山东金穗食品';
+
+      // 如果你未来在 products.data.js 增加更多字段（如规格、贮存等），可在此补充渲染逻辑
+    })();
+
+    // 年份
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

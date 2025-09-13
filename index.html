@@ -144,55 +144,92 @@
   </section>
 
   
- <section id="contact" class="section">
+<section id="contact" class="section">
   <div class="wrap">
-    <h2 class="h2" data-zh="联系我们" data-en="Contact Us">联系我们</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      
-      <!-- 左边：表单 -->
+    <h2 class="h2" style="text-align:center" data-zh="在线留言" data-en="Online Inquiry">在线留言</h2>
+
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px">
+      <!-- 左侧：表单 -->
       <div class="card">
         <div class="p">
-          <form action="https://formsubmit.co/info@jinsuifood.com" method="POST" style="display:flex;flex-direction:column;gap:15px">
-  <!-- 防垃圾 -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="官网新客户留言 - 金穗食品">
+          <form id="contactForm" action="https://formsubmit.co/info@jinsuifood.com" method="POST" class="form-two-col">
 
-  <div>
-    <label data-zh="姓名" data-en="Name" style="display:block;margin-bottom:5px;font-weight:600">姓名</label>
-    <input type="text" name="name" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
-  </div>
+            <!-- formsubmit 配置 -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="官网在线留言 - 山东金穗食品">
+            <!-- 提交成功跳转（可选）：<input type="hidden" name="_next" value="https://www.jinsuifood.com/?sent=1"> -->
 
-  <div>
-    <label data-zh="邮箱" data-en="Email" style="display:block;margin-bottom:5px;font-weight:600">邮箱</label>
-    <input type="email" name="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px">
-  </div>
+            <!-- 行 1：分类 + 姓名 -->
+            <div class="row">
+              <div class="field">
+                <label><span data-zh="请选择分类（便于快速回复）" data-en="Select category (faster response)">请选择分类（便于快速回复）</span></label>
+                <select name="category" required>
+                  <option value="" selected disabled data-zh="请选择" data-en="Please select">请选择</option>
+                  <option data-zh="采购/询价" data-en="Purchase/Quote">采购/询价</option>
+                  <option data-zh="OEM/ODM 定制" data-en="OEM/ODM">OEM/ODM 定制</option>
+                  <option data-zh="经销/代理" data-en="Distribution/Agency">经销/代理</option>
+                  <option data-zh="售后与支持" data-en="Support">售后与支持</option>
+                  <option data-zh="其他咨询" data-en="Other">其他咨询</option>
+                </select>
+              </div>
 
-  <div>
-    <label data-zh="留言内容" data-en="Message" style="display:block;margin-bottom:5px;font-weight:600">留言内容</label>
-    <textarea name="message" rows="5" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px"></textarea>
-  </div>
+              <div class="field">
+                <label><span data-zh="姓名：" data-en="Name:">姓名：</span></label>
+                <input type="text" name="name" required placeholder="">
+              </div>
+            </div>
 
-  <button type="submit" class="btn primary" data-zh="提交" data-en="Submit" 
-          style="align-self:flex-start;padding:10px 30px;border:none;border-radius:8px;cursor:pointer">
-    提交
-  </button>
-</form>
+            <!-- 行 2：电话 + 邮箱 -->
+            <div class="row">
+              <div class="field">
+                <label><span data-zh="电话：" data-en="Phone:">电话：</span></label>
+                <input type="tel" name="phone" inputmode="tel" placeholder="">
+              </div>
+              <div class="field">
+                <label><span data-zh="邮箱：" data-en="Email:">邮箱：</span> <i class="req">*</i></label>
+                <input type="email" name="email" required placeholder="">
+              </div>
+            </div>
 
+            <!-- 行 3：留言 -->
+            <div class="row">
+              <div class="field col-span-2">
+                <label><span data-zh="请输入详细咨询内容……" data-en="Please enter your message…">请输入详细咨询内容……</span></label>
+                <textarea name="message" rows="6" required></textarea>
+              </div>
+            </div>
+
+            <!-- 行 4：验证码 + 提交 -->
+            <div class="row align-end">
+              <div class="field">
+                <label><span data-zh="请输入验证码：" data-en="Enter verification code:">请输入验证码：</span></label>
+                <div class="captcha-line">
+                  <input id="captchaInput" type="text" maxlength="3" required placeholder="">
+                  <div class="captcha-img" id="captchaEq">3 + 4 = ?</div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn danger" data-zh="发  送" data-en="Submit">发  送</button>
+              </div>
+            </div>
+
+          </form>
         </div>
       </div>
-      
-      <!-- 右边：二维码 -->
+
+      <!-- 右侧：企业微信二维码/邮箱 -->
       <div class="card" style="text-align:center">
         <div class="p">
-          <p data-zh="扫描二维码，立即通过企业微信联系我们：" data-en="Scan the QR code to connect via WeChat Work:">扫描二维码，立即通过企业微信联系我们：</p>
-          <img src="wechat-qr.jpg" alt="WeChat QR" style="max-width:200px;margin:10px auto;display:block">
-          <p><strong>Email:</strong> info@jinsuifood.com</p>
+          <p data-zh="扫描企业微信二维码，获取更快回复：" data-en="Scan WeChat Work for faster response:">扫描企业微信二维码，获取更快回复：</p>
+          <img src="wechat-qr.jpg" alt="WeChat Work QR" style="max-width:220px;width:100%;margin:10px auto;display:block;border-radius:8px">
+          <p style="margin-top:8px"><strong>Email:</strong> info@jinsuifood.com</p>
         </div>
       </div>
-      
     </div>
   </div>
 </section>
+
 
 
   <footer class="footer">

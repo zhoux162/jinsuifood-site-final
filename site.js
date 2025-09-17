@@ -84,3 +84,41 @@ food.com');
     }
   });
 }
+// Company slider (autoplay + dots + arrows)
+(function(){
+  const slider = document.getElementById('company-slider');
+  if(!slider) return;
+  const track = slider.querySelector('.slider-track');
+  const slides = Array.from(track.children);
+  const prev = slider.querySelector('.slider-nav.prev');
+  const next = slider.querySelector('.slider-nav.next');
+  const dotsWrap = slider.querySelector('.slider-dots');
+  let idx = 0, timer = null;
+
+  slides.forEach((_, i)=>{
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', '第 '+(i+1)+' 张');
+    dot.addEventListener('click', ()=>go(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function updateDots(){ Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('on', i===idx)); }
+  function go(n){ idx = (n+slides.length)%slides.length; track.scrollTo({left: idx*track.clientWidth, behavior:'smooth'}); updateDots(); }
+  function nextSlide(){ go(idx+1); }
+
+  prev && prev.addEventListener('click', ()=>go(idx-1));
+  next && next.addEventListener('click', ()=>go(idx+1));
+
+  function start(){ stop(); timer=setInterval(nextSlide, 4000); }
+  function stop(){ if(timer) clearInterval(timer), timer=null; }
+  slider.addEventListener('mouseenter', stop); slider.addEventListener('mouseleave', start);
+
+  // 触控滑动
+  let sx=0;
+  track.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; stop(); }, {passive:true});
+  track.addEventListener('touchend', e=>{ const dx=e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) (dx<0?nextSlide():go(idx-1)); start(); }, {passive:true});
+
+  track.addEventListener('scroll', ()=>{ if(track._t) return; track._t=setTimeout(()=>{ idx=Math.round(track.scrollLeft/track.clientWidth); updateDots(); track._t=null; }, 100); });
+  window.addEventListener('resize', ()=>go(idx));
+  updateDots(); start();
+})();

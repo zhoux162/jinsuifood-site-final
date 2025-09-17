@@ -10,12 +10,12 @@ function setLang(lang){
     const zh = el.getAttribute('data-zh');
     const en = el.getAttribute('data-en');
     const val = isZh ? (zh || en) : (en || zh);
-    if (val != null && val !== '') el.textContent = val; // 缺省不覆盖，避免 'undefined'
+    if (val != null && val !== '') el.textContent = val; // 缺省不覆盖
   });
 
   // 允许 HTML：data-zhp / data-en
   document.querySelectorAll('[data-zhp]').forEach(el=>{
-    const zh = el.getAttribute('data-zhp');  // ← 用 data-zhp
+    const zh = el.getAttribute('data-zhp');
     const en = el.getAttribute('data-en');
     const val = isZh ? (zh || en) : (en || zh);
     if (val != null && val !== '') el.innerHTML = val;   // 缺省不覆盖
@@ -46,33 +46,18 @@ if (m){
 }
 
 // ---- Form Submit（兼容 formsubmit / Formspree） ----
-// 兼容两种表单 id：#contact-form（旧写法）或 #contactForm（当前 HTML）
 const form = document.getElementById('contact-form') || document.getElementById('contactForm');
-
 if (form){
   form.addEventListener('submit', async (e) => {
-    // 让验证码脚本负责校验；我们始终阻止原生提交并用 fetch 提交到 action 或 Formspree
-    e.preventDefault();
-
+    e.preventDefault(); // 交给 fetch 提交
     const fd  = new FormData(form);
-    // 若 HTML 写了 action（如 formsubmit.co），优先使用；否则退回到 Formspree（请替换 YOUR_FORM_ID）
     const url = form.getAttribute('action') || 'https://formspree.io/f/YOUR_FORM_ID';
-
     try{
-      const res = await fetch(url, {
-        method: 'POST',
-        body: fd,
-        headers: { 'Accept': 'application/json' }
-      });
-
+      const res = await fetch(url, { method:'POST', body:fd, headers:{ 'Accept':'application/json' }});
       if (res.ok){
-        alert(document.documentElement.lang === 'zh-CN'
-          ? '提交成功，我们会尽快联系您。'
-          : 'Thanks! We will contact you soon.');
+        alert(document.documentElement.lang === 'zh-CN' ? '提交成功，我们会尽快联系您。' : 'Thanks! We will contact you soon.');
         form.reset();
-      }else{
-        throw new Error(String(res.status));
-      }
+      }else{ throw new Error(String(res.status)); }
     }catch(err){
       alert(document.documentElement.lang === 'zh-CN'
         ? '提交失败，请稍后再试或直接发邮件到 info@jinsuifood.com'
@@ -80,57 +65,17 @@ if (form){
     }
   });
 }
-food.com');
-    }
-  });
-}
-// Company slider (autoplay + dots + arrows)
+
+// --- Company Slider: autoplay + arrows + dots + swipe ---
 (function(){
   const slider = document.getElementById('company-slider');
   if(!slider) return;
-  const track = slider.querySelector('.slider-track');
-  const slides = Array.from(track.children);
-  const prev = slider.querySelector('.slider-nav.prev');
-  const next = slider.querySelector('.slider-nav.next');
-  const dotsWrap = slider.querySelector('.slider-dots');
-  let idx = 0, timer = null;
 
-  slides.forEach((_, i)=>{
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', '第 '+(i+1)+' 张');
-    dot.addEventListener('click', ()=>go(i));
-    dotsWrap.appendChild(dot);
-  });
-
-  function updateDots(){ Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('on', i===idx)); }
-  function go(n){ idx = (n+slides.length)%slides.length; track.scrollTo({left: idx*track.clientWidth, behavior:'smooth'}); updateDots(); }
-  function nextSlide(){ go(idx+1); }
-
-  prev && prev.addEventListener('click', ()=>go(idx-1));
-  next && next.addEventListener('click', ()=>go(idx+1));
-
-  function start(){ stop(); timer=setInterval(nextSlide, 4000); }
-  function stop(){ if(timer) clearInterval(timer), timer=null; }
-  slider.addEventListener('mouseenter', stop); slider.addEventListener('mouseleave', start);
-
-  // 触控滑动
-  let sx=0;
-  track.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; stop(); }, {passive:true});
-  track.addEventListener('touchend', e=>{ const dx=e.changedTouches[0].clientX - sx; if(Math.abs(dx)>40) (dx<0?nextSlide():go(idx-1)); start(); }, {passive:true});
-
-  track.addEventListener('scroll', ()=>{ if(track._t) return; track._t=setTimeout(()=>{ idx=Math.round(track.scrollLeft/track.clientWidth); updateDots(); track._t=null; }, 100); });
-  window.addEventListener('resize', ()=>go(idx));
-  updateDots(); start();
-})();
-// --- Company Slider: robust init (autoplay + arrows + dots + swipe) ---
-(function(){
-  const slider = document.getElementById('company-slider');
-  if(!slider) return;
   const track = slider.querySelector('.slider-track');
   const slides = Array.from(track ? track.children : []);
   if (!track || slides.length === 0) return;
 
-  // 兜底：如果 CSS 没加载到位，这里强制关键内联样式，确保能横向滑动
+  // 兜底：关键样式（防止 CSS 未加载时不能横滑）
   const cs = getComputedStyle(track);
   if (cs.display !== 'flex') track.style.display = 'flex';
   if (cs.overflowX === 'visible') track.style.overflowX = 'auto';
@@ -150,10 +95,10 @@ food.com');
   // dots
   dotsWrap.innerHTML = '';
   slides.forEach((_, i)=>{
-    const b = document.createElement('button');
-    b.setAttribute('aria-label', '第 '+(i+1)+' 张');
-    b.addEventListener('click', ()=>go(i));
-    dotsWrap.appendChild(b);
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', '第 '+(i+1)+' 张');
+    dot.addEventListener('click', ()=>go(i));
+    dotsWrap.appendChild(dot);
   });
 
   function updateDots(){
@@ -170,9 +115,9 @@ food.com');
   prev && prev.addEventListener('click', ()=>go(idx-1));
   next && next.addEventListener('click', ()=>go(idx+1));
 
-  // 自动播放：悬停/触摸/获得焦点时暂停
+  // 自动播放：悬停/触摸/聚焦暂停
   function start(){ stop(); timer = setInterval(nextSlide, 4000); }
-  function stop(){ if(timer) clearInterval(timer); timer = null; }
+  function stop(){ if(timer) clearInterval(timer), timer = null; }
   slider.addEventListener('mouseenter', stop);
   slider.addEventListener('mouseleave', start);
   slider.addEventListener('focusin', stop);
@@ -198,7 +143,7 @@ food.com');
   });
   window.addEventListener('resize', ()=>go(idx));
 
-  // 等图片就绪后定位到第 1 张
+  // 等图片就绪后启动
   const imgs = track.querySelectorAll('img');
   let loaded = 0;
   imgs.forEach(img=>{

@@ -25,34 +25,53 @@
     </div>
   </header>
 
-  <!-- 首屏：公司简介（英雄区已删除） -->
-  <section class="section" id="company">
-    <div class="wrap">
-      <h2 class="h2" data-zh="公司简介" data-en="Company Profile">公司简介</h2>
+  <!-- 公司简介（首屏） -->
+<section class="section" id="company">
+  <div class="wrap">
+    <h2 class="h2" data-zh="公司简介" data-en="Company Profile">公司简介</h2>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
-        <!-- 左侧：简介 + 要点 -->
-        <div>
-          <p data-zhp="山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。" data-en="Located at No.1169 North Ring 1st Road, Qingzhou, Shandong. We specialize in soy products and frozen prepared foods, serving retailers, chain restaurants and distributors worldwide.">山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。</p>
-          <ul style="margin:10px 0 0 18px">
-            <li data-zhp="<strong>产能稳定：</strong>3 条自动化生产线（日本引进），效率与一致性兼顾。" data-en="<strong>Stable capacity:</strong> three automated lines imported from Japan for efficiency & consistency."><strong>产能稳定：</strong>3 条自动化生产线（日本引进），效率与一致性兼顾。</li>
-            <li data-zhp="<strong>食品安全：</strong>通过 ISO22000、HACCP、HALAL 认证，原料批批可追溯。" data-en="<strong>Food safety:</strong> ISO22000, HACCP & HALAL; traceable raw materials."><strong>食品安全：</strong>通过 ISO22000、HACCP、HALAL 认证，原料批批可追溯。</li>
-            <li data-zhp="<strong>主要产品：</strong>油炸豆腐、味付豆腐、调味干瓢、福袋/巾着、八珍豆腐饼、豆腐丝/包等。" data-en="<strong>Key products:</strong> fried tofu, seasoned tofu, seasoned kanpyo, kinchaku pouches, Eight-Treasure tofu patty, tofu strips/bags."><strong>主要产品：</strong>油炸豆腐、味付豆腐、调味干瓢、福袋/巾着、八珍豆腐饼、豆腐丝/包等。</li>
-          </ul>
-        </div>
+    <!-- 左右两列：左侧文字，右侧相册（使用 data-zh 纯文本，避免动 JS） -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <div>
+        <p data-zh="山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。"
+           data-en="Located in Qingzhou, Shandong. We focus on soy products and frozen prepared foods, serving retailers, chains and distributors.">
+          山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。
+        </p>
+        <ul style="margin:10px 0 0 18px">
+          <li data-zh="产能稳定：日本引进 3 条自动化生产线。" data-en="Stable capacity: 3 automated lines imported from Japan.">产能稳定：日本引进 3 条自动化生产线。</li>
+          <li data-zh="食品安全：通过 ISO22000、HACCP、HALAL 认证。" data-en="Food safety: ISO22000, HACCP, HALAL certified.">食品安全：通过 ISO22000、HACCP、HALAL 认证。</li>
+          <li data-zh="主要产品：油炸豆腐、味付豆腐、干瓢、福袋/巾着、豆腐饼、豆腐丝/包等。"
+              data-en="Key products: fried tofu, seasoned tofu, kanpyo, kinchaku, tofu patties, tofu strips/bags.">
+              主要产品：油炸豆腐、味付豆腐、干瓢、福袋/巾着、豆腐饼、豆腐丝/包等。
+          </li>
+        </ul>
+      </div>
 
-        <!-- 右侧：照片占位（后续替换为真实照片） -->
-        <div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-            <div style="height:120px;border:1px dashed #e2e8f0;border-radius:12px;background:#fff" aria-label="公司外观"></div>
-            <div style="height:120px;border:1px dashed #e2e8f0;border-radius:12px;background:#fff" aria-label="生产车间"></div>
-            <div style="height:120px;border:1px dashed #e2e8f0;border-radius:12px;background:#fff" aria-label="冷库"></div>
-          </div>
-          <p class="note" style="margin-top:8px" data-zh="稍后可替换为企业外观/车间/证书照片（支持 3–9 张）。" data-en="Replace with exterior/workshop/certificates photos later (3–9 images).">稍后可替换为企业外观/车间/证书照片（支持 3–9 张）。</p>
-        </div>
+      <!-- 右侧相册（把 src/href 换成你现有文件名即可） -->
+      <div class="gallery-pl" aria-label="企业与车间照片">
+        <a class="ph" href="工厂全景.jpeg" target="_blank" aria-label="工厂全景">
+          <img src="工厂全景.jpeg" alt="工厂全景" loading="lazy">
+        </a>
+        <a class="ph" href="工厂外景.jpeg" target="_blank" aria-label="办公楼外立面">
+          <img src="工厂外景.jpeg" alt="办公楼外立面" loading="lazy">
+        </a>
+        <a class="ph" href="包装车间.jpeg" target="_blank" aria-label="包装车间">
+          <img src="包装车间.jpeg" alt="包装车间操作" loading="lazy">
+        </a>
+        <a class="ph" href="生产车间.jpeg" target="_blank" aria-label="生产车间">
+          <img src="生产车间.jpeg" alt="生产车间流水线" loading="lazy">
+        </a>
+        <a class="ph" href="异物检测.jpeg" target="_blank" aria-label="异物检测">
+          <img src="异物检测.jpeg" alt="异物检测流程" loading="lazy">
+        </a>
+        <a class="ph" href="蒸汽杀菌.jpeg" target="_blank" aria-label="蒸汽杀菌">
+          <img src="蒸汽杀菌.jpeg" alt="蒸汽杀菌设备" loading="lazy">
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- 产品中心（保留原有结构与链接） -->
   <section id="products" class="section">

@@ -25,13 +25,13 @@
     </div>
   </header>
 
-  <!-- 公司简介（首屏） -->
+ <!-- 公司简介（首屏） -->
 <section class="section" id="company">
   <div class="wrap">
     <h2 class="h2" data-zh="公司简介" data-en="Company Profile">公司简介</h2>
 
-    <!-- 左右两列：左侧文字，右侧相册（使用 data-zh 纯文本，避免动 JS） -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+      <!-- 左侧文字 -->
       <div>
         <p data-zh="山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。"
            data-en="Located in Qingzhou, Shandong. We focus on soy products and frozen prepared foods, serving retailers, chains and distributors.">
@@ -47,30 +47,24 @@
         </ul>
       </div>
 
-      <!-- 右侧相册（把 src/href 换成你现有文件名即可） -->
-      <div class="gallery-pl" aria-label="企业与车间照片">
-        <a class="ph" href="工厂全景.jpeg" target="_blank" aria-label="工厂全景">
-          <img src="工厂全景.jpeg" alt="工厂全景" loading="lazy">
-        </a>
-        <a class="ph" href="工厂外景.jpeg" target="_blank" aria-label="办公楼外立面">
-          <img src="工厂外景.jpeg" alt="办公楼外立面" loading="lazy">
-        </a>
-        <a class="ph" href="包装车间.jpeg" target="_blank" aria-label="包装车间">
-          <img src="包装车间.jpeg" alt="包装车间操作" loading="lazy">
-        </a>
-        <a class="ph" href="生产车间.jpeg" target="_blank" aria-label="生产车间">
-          <img src="生产车间.jpeg" alt="生产车间流水线" loading="lazy">
-        </a>
-        <a class="ph" href="异物检测.jpeg" target="_blank" aria-label="异物检测">
-          <img src="异物检测.jpeg" alt="异物检测流程" loading="lazy">
-        </a>
-        <a class="ph" href="蒸汽杀菌.jpeg" target="_blank" aria-label="蒸汽杀菌">
-          <img src="蒸汽杀菌.jpeg" alt="蒸汽杀菌设备" loading="lazy">
-        </a>
+      <!-- 右侧：大图轮播 -->
+      <div class="hero-slider" id="company-slider" aria-label="企业与车间照片轮播">
+        <div class="slider-track">
+          <img src="工厂全景.jpeg" alt="工厂全景">
+          <img src="工厂外景.jpeg" alt="办公楼外立面">
+          <img src="包装车间.jpeg" alt="包装车间操作">
+          <img src="生产车间.jpeg" alt="生产车间流水线">
+          <img src="异物检测.jpeg" alt="异物检测流程">
+          <img src="蒸汽杀菌.jpeg" alt="蒸汽杀菌设备">
+        </div>
+        <button class="slider-nav prev" aria-label="上一张">‹</button>
+        <button class="slider-nav next" aria-label="下一张">›</button>
+        <div class="slider-dots" role="tablist" aria-label="轮播导航点"></div>
       </div>
     </div>
   </div>
 </section>
+
 
 
   <!-- 产品中心（保留原有结构与链接） -->

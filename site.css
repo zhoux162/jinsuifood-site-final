@@ -96,4 +96,22 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 @media (max-width:920px){
   .gallery-pl{ grid-template-columns:repeat(2,1fr); }
 }
+/* Company slider */
+.hero-slider{position:relative;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden;background:#fff}
+.slider-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none;height:360px}
+.slider-track::-webkit-scrollbar{display:none}
+.slider-track>img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center}
+.slider-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:999px;border:1px solid #e2e8f0;background:rgba(255,255,255,.9);display:grid;place-items:center;cursor:pointer;color:#0f172a}
+.slider-nav:hover{background:#fff}
+.slider-nav.prev{left:10px}.slider-nav.next{right:10px}
+.slider-dots{position:absolute;left:0;right:0;bottom:8px;display:flex;gap:6px;justify-content:center}
+.slider-dots button{width:8px;height:8px;border-radius:999px;border:0;background:#cbd5e1;opacity:.8;cursor:pointer}
+.slider-dots button.on{background:#f59e0b;opacity:1}
+@media (max-width:920px){.slider-track{height:220px}}
+
+/* 证书/相册网格（如你还没有的话） */
+.gallery-pl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.gallery-pl .ph,.gallery-pl a{display:block;height:140px;border:1px dashed #e2e8f0;border-radius:12px;background:#fff}
+.gallery-pl img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
+@media (max-width:920px){.gallery-pl{grid-template-columns:repeat(2,1fr)}}
 

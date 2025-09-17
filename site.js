@@ -122,3 +122,88 @@ food.com');
   window.addEventListener('resize', ()=>go(idx));
   updateDots(); start();
 })();
+// --- Company Slider: robust init (autoplay + arrows + dots + swipe) ---
+(function(){
+  const slider = document.getElementById('company-slider');
+  if(!slider) return;
+  const track = slider.querySelector('.slider-track');
+  const slides = Array.from(track ? track.children : []);
+  if (!track || slides.length === 0) return;
+
+  // 兜底：如果 CSS 没加载到位，这里强制关键内联样式，确保能横向滑动
+  const cs = getComputedStyle(track);
+  if (cs.display !== 'flex') track.style.display = 'flex';
+  if (cs.overflowX === 'visible') track.style.overflowX = 'auto';
+  slides.forEach(img=>{
+    img.style.flex = '0 0 100%';
+    img.style.width = '100%';
+    img.style.height = img.style.height || '100%';
+    img.style.objectFit = img.style.objectFit || 'cover';
+  });
+
+  const prev = slider.querySelector('.slider-nav.prev');
+  const next = slider.querySelector('.slider-nav.next');
+  const dotsWrap = slider.querySelector('.slider-dots');
+
+  let idx = 0, timer = null;
+
+  // dots
+  dotsWrap.innerHTML = '';
+  slides.forEach((_, i)=>{
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', '第 '+(i+1)+' 张');
+    b.addEventListener('click', ()=>go(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function updateDots(){
+    Array.from(dotsWrap.children).forEach((d,i)=>d.classList.toggle('on', i===idx));
+  }
+  function go(n){
+    idx = (n + slides.length) % slides.length;
+    const w = track.clientWidth || slider.clientWidth || window.innerWidth;
+    track.scrollTo({left: idx * w, behavior: 'smooth'});
+    updateDots();
+  }
+  function nextSlide(){ go(idx+1); }
+
+  prev && prev.addEventListener('click', ()=>go(idx-1));
+  next && next.addEventListener('click', ()=>go(idx+1));
+
+  // 自动播放：悬停/触摸/获得焦点时暂停
+  function start(){ stop(); timer = setInterval(nextSlide, 4000); }
+  function stop(){ if(timer) clearInterval(timer); timer = null; }
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+  slider.addEventListener('focusin', stop);
+  slider.addEventListener('focusout', start);
+
+  // 触控滑动
+  let sx = 0;
+  track.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; stop(); }, {passive:true});
+  track.addEventListener('touchend', e=>{
+    const dx = e.changedTouches[0].clientX - sx;
+    if(Math.abs(dx) > 40) (dx < 0 ? nextSlide() : go(idx-1));
+    start();
+  }, {passive:true});
+
+  // 手动拖动/窗口变化时校准索引
+  track.addEventListener('scroll', ()=>{
+    if(track._t) return;
+    track._t = setTimeout(()=>{
+      const w = track.clientWidth || 1;
+      idx = Math.round(track.scrollLeft / w);
+      updateDots(); track._t = null;
+    }, 100);
+  });
+  window.addEventListener('resize', ()=>go(idx));
+
+  // 等图片就绪后定位到第 1 张
+  const imgs = track.querySelectorAll('img');
+  let loaded = 0;
+  imgs.forEach(img=>{
+    if (img.complete) { if(++loaded === imgs.length) afterLoad(); }
+    else img.addEventListener('load', ()=>{ if(++loaded === imgs.length) afterLoad(); });
+  });
+  function afterLoad(){ updateDots(); go(0); start(); }
+})();

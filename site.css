@@ -147,4 +147,27 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 @media (max-width: 920px){
   #certs .gallery-pl a, #certs .gallery-pl .ph{ height: 200px; }
 }
+/* 证书照片网格：自适应列数，均匀铺满 */
+#certs .gallery-pl{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* 证书卡更高一点；图片不裁切，完整展示 */
+#certs .gallery-pl a,
+#certs .gallery-pl .ph{ height: 240px; }
+
+#certs .gallery-pl img{
+  width:100%; height:100%;
+  object-fit: contain;           /* 不裁切 */
+  background:#fff;
+  padding:8px;
+  border-radius:12px;
+  box-shadow: 0 0 0 1px #e2e8f0 inset;
+}
+@media (max-width:920px){
+  #certs .gallery-pl a, #certs .gallery-pl .ph{ height:200px; }
+}
+
 

@@ -25,29 +25,56 @@
     </div>
   </header>
 
- <!-- 公司简介（首屏） -->
 <section class="section" id="company">
   <div class="wrap">
     <h2 class="h2" data-zh="公司简介" data-en="Company Profile">公司简介</h2>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
-      <!-- 左侧文字 -->
-      <div>
+    <!-- 两列布局：左信息卡 + 右轮播 -->
+    <div class="company-intro">
+      <!-- 左：信息卡 -->
+      <div class="intro-card">
+        <span class="eyebrow" data-zh="关于金穗" data-en="About Jinsui">关于金穗</span>
         <p data-zh="山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。"
-           data-en="Located in Qingzhou, Shandong. We focus on soy products and frozen prepared foods, serving retailers, chains and distributors.">
-          山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。
+           data-en="Located in Qingzhou, Shandong, we focus on soy products and frozen prepared foods, serving retailers, chains and distributors.">
+           山东金穗食品有限公司位于山东省青州市北环一路 1169 号，专注豆制品与速冻调理食品的研发、生产与销售；产品服务国内外商超、餐饮连锁与经销渠道。
         </p>
-        <ul style="margin:10px 0 0 18px">
-          <li data-zh="产能稳定：日本引进 3 条自动化生产线。" data-en="Stable capacity: 3 automated lines imported from Japan.">产能稳定：日本引进 3 条自动化生产线。</li>
-          <li data-zh="食品安全：通过 ISO22000、HACCP、HALAL 认证。" data-en="Food safety: ISO22000, HACCP, HALAL certified.">食品安全：通过 ISO22000、HACCP、HALAL 认证。</li>
-          <li data-zh="主要产品：油炸豆腐、味付豆腐、干瓢、福袋/巾着、豆腐饼、豆腐丝/包等。"
-              data-en="Key products: fried tofu, seasoned tofu, kanpyo, kinchaku, tofu patties, tofu strips/bags.">
-              主要产品：油炸豆腐、味付豆腐、干瓢、福袋/巾着、豆腐饼、豆腐丝/包等。
-          </li>
-        </ul>
+
+        <!-- 认证/优势标签 -->
+        <div class="badges">
+          <span class="badge-soft" data-zh="ISO22000:2018" data-en="ISO22000:2018">ISO22000:2018</span>
+          <span class="badge-soft" data-zh="HACCP 体系" data-en="HACCP">HACCP 体系</span>
+          <span class="badge-soft" data-zh="HALAL" data-en="HALAL">HALAL</span>
+          <span class="badge-soft" data-zh="OEM/ODM" data-en="OEM/ODM">OEM/ODM</span>
+        </div>
+
+        <!-- 关键数字 -->
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="big" data-zh="2002" data-en="2002">2002</div>
+            <div class="sub" data-zh="成立" data-en="Founded">成立</div>
+          </div>
+          <div class="kpi">
+            <div class="big" data-zh="10,000㎡" data-en="10,000㎡">10,000㎡</div>
+            <div class="sub" data-zh="车间面积" data-en="Workshop area">车间面积</div>
+          </div>
+          <div class="kpi">
+            <div class="big" data-zh="≈12 吨/日" data-en="≈12 t/day">≈12 吨/日</div>
+            <div class="sub" data-zh="大豆加工量" data-en="Soybeans/day">大豆加工量</div>
+          </div>
+          <div class="kpi">
+            <div class="big" data-zh="5+ 国家" data-en="5+ countries">5+ 国家</div>
+            <div class="sub" data-zh="出口市场" data-en="Export markets">出口市场</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-row">
+          <a href="#products" class="btn" data-zh="查看产品" data-en="View Products">查看产品</a>
+          <a href="#contact" class="btn ghost" data-zh="获取报价" data-en="Get Quote">获取报价</a>
+        </div>
       </div>
 
-      <!-- 右侧：大图轮播 -->
+      <!-- 右：你的大图轮播（保留原有结构/JS） -->
       <div class="hero-slider" id="company-slider" aria-label="企业与车间照片轮播">
         <div class="slider-track">
           <img src="工厂全景.jpeg" alt="工厂全景">

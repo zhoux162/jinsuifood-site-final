@@ -169,5 +169,42 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 @media (max-width:920px){
   #certs .gallery-pl a, #certs .gallery-pl .ph{ height:200px; }
 }
+/* --- Company Intro polish --- */
+#company .company-intro{
+  display:grid; grid-template-columns:1.05fr .95fr; gap:24px;
+}
+@media (max-width:920px){ #company .company-intro{ grid-template-columns:1fr; } }
+
+#company .intro-card{
+  background:linear-gradient(180deg,#ffffff,#fafcff);
+  border:1px solid #e2e8f0; border-radius:16px; padding:18px;
+  box-shadow:0 2px 10px rgba(2,6,23,.04);
+}
+
+#company .eyebrow{
+  display:inline-block; font-size:12px; letter-spacing:.04em;
+  color:#64748b; border:1px solid #e2e8f0; background:#fff;
+  border-radius:999px; padding:4px 10px; margin-bottom:8px;
+}
+
+#company .badges{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 6px; }
+#company .badge-soft{
+  font-size:12px; color:#0f172a; background:#fff; border:1px solid #e2e8f0;
+  border-radius:999px; padding:6px 10px;
+}
+
+#company .kpi-grid{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:14px 0;
+}
+#company .kpi{ background:#fff; border:1px dashed #e2e8f0; border-radius:12px; padding:12px; }
+#company .kpi .big{ font-weight:800; font-size:20px; color:#0f172a; }
+#company .kpi .sub{ color:#64748b; font-size:12px; margin-top:2px; }
+
+#company .cta-row{ display:flex; gap:10px; margin-top:8px; }
+#company .btn{ display:inline-block; padding:10px 14px; border-radius:12px; background:#f59e0b; color:#111827; text-decoration:none; }
+#company .btn.ghost{ background:#fff; border:1px solid #e2e8f0; color:#0f172a; }
+
+/* 右侧轮播边角与左侧统一 */
+#company .hero-slider{ border-radius:16px; }
 
 

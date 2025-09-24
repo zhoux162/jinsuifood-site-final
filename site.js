@@ -152,3 +152,28 @@ if (form){
   });
   function afterLoad(){ updateDots(); go(0); start(); }
 })();
+// FAQs: 只展开一条，并记忆上次展开项
+(function(){
+  const list = document.querySelectorAll('#faqs details.faq-item');
+  if(!list.length) return;
+  const KEY = 'faqs-open-idx';
+
+  // 默认只展开第一条
+  list.forEach((d,i)=> d.open = (i===0));
+
+  list.forEach((d, i)=>{
+    d.addEventListener('toggle', ()=>{
+      if(d.open){
+        // 关闭其它
+        list.forEach((x, j)=>{ if(j!==i) x.open = false; });
+        localStorage.setItem(KEY, String(i));
+      }
+    });
+  });
+
+  // 恢复上次展开
+  const last = Number(localStorage.getItem(KEY));
+  if(!Number.isNaN(last) && list[last]) {
+    list.forEach((d, i)=> d.open = (i === last));
+  }
+})();

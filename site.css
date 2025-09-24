@@ -75,3 +75,13 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 /* ✅ 新增小工具类（不影响现有布局） */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}
+/* === FAQs styles (新增) === */
+.faq .faq-list{max-width:920px;margin:10px auto 0;display:grid;gap:10px}
+.faq-item{border:1px solid #e2e8f0;border-radius:12px;background:#fff;overflow:hidden}
+.faq-item>summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;display:flex;align-items:center;gap:8px}
+.faq-item>summary::-webkit-details-marker{display:none}
+.faq-item>summary::after{content:"＋";margin-left:auto;color:#64748b}
+.faq-item[open]>summary::after{content:"－";color:#0ea5e9}
+.faq-answer{padding:0 16px 14px;color:#475569;border-top:1px dashed #e2e8f0}
+.faq .h2{margin-bottom:12px}
+

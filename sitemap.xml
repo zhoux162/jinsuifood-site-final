@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首页 -->
+  <url><loc>https://www.jinsuifood.com/</loc></url>
+
+  <!-- 产品详情（与你当前 product.html?slug=... 结构一致） -->
+  <url><loc>https://www.jinsuifood.com/product.html?slug=fried-tofu-sheets</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=fried-tofu-strips</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=shindemaki</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=kinchaku-large</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=kinchaku-small</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=seasoned-tofu-square</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=seasoned-tofu-slices</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=tofu-veg-balls</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=tofu-patty</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=seasoned-kanpyo</loc></url>
+  <url><loc>https://www.jinsuifood.com/product.html?slug=star-potato-bites</loc></url>
+</urlset>
